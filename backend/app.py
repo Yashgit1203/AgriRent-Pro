@@ -191,7 +191,11 @@ def call_huggingface_api(prompt, max_length=300):
 
         if response.status_code == 200:
             result = response.json()
-            return result["choices"][0]["message"]["content"]
+            content = result["choices"][0]["message"]["content"]
+            import re
+            content = re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
+
+            return content
         else:
             return None
 
