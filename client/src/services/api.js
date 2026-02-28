@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://agrirent-backend-g5md.onrender.com';
+const API_URL = 'https://agrirent-backend-g5md.onrender.com/api';
 
 // Create axios instance with default config
 const api = axios.create({
