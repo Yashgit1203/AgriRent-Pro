@@ -909,11 +909,3 @@ def ai_generate_contract(current_user, current_role):
 # ==================== MAIN ==========================
 
 setup_db()
-if __name__ == '__main__':
-    print("=" * 50)
-    print("🚀 AgriRent Pro - PostgreSQL Edition")
-    print("=" * 50)
-    print("✅ Using PostgreSQL Database")
-    print("✅ Using Hugging Face API (FREE!)")
-    print("=" * 50)
-    app.run(debug=True, port=5000, host="0.0.0.0")
