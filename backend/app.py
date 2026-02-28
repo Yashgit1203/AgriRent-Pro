@@ -18,7 +18,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-app.config['SECRET_KEY'] = os.getenv("SECRET_URL")
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 app.config['DATABASE_URL'] = os.getenv("DATABASE_URL")
 
 # Hugging Face API Configuration (100% FREE!)
