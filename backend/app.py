@@ -16,7 +16,7 @@ from psycopg2.extras import RealDictCursor
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=["https://https://agrirent-pro.onrender.com"])
+CORS(app, origins=["https://agrirent-pro.onrender.com"])
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
