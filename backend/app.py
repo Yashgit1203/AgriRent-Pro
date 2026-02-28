@@ -30,6 +30,7 @@ HUGGINGFACE_MODEL = "meta-llama/Llama-3.2-1B-Instruct"
 def get_connection():
     return psycopg2.connect(
         DATABASE_URL,
+        sslmode="require",
         cursor_factory=RealDictCursor
     )
 
@@ -239,6 +240,7 @@ User Question: {question}
 
 # ==================== MAIN ====================
 
+setup_db()
+
 if __name__ == "__main__":
-    setup_db()
     app.run(host="0.0.0.0", port=5000)
