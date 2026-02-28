@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 import requests
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://agrirent-pro.onrender.com"])
 
 # Configuration
 import os
