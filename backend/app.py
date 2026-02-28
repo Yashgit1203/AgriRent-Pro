@@ -69,7 +69,7 @@ def setup_db():
             id SERIAL PRIMARY KEY,
             name TEXT,
             price REAL,
-            is_active INTEGER DEFAULT 1
+            is_active BOOLEAN DEFAULT TRUE
         )
     """)
     
@@ -368,7 +368,7 @@ def get_equipment(current_user, current_role):
     conn = get_connection()
     cur = conn.cursor()
     
-    cur.execute("SELECT id, name, price, is_active FROM equipment WHERE is_active = 1")
+    cur.execute("SELECT id, name, price, is_active FROM equipment WHERE is_active = TRUE")
     rows = cur.fetchall()
     cur.close()
     conn.close()
@@ -423,7 +423,7 @@ def deactivate_equipment(current_user, current_role, equipment_id):
     cur = conn.cursor()
     
     cur.execute(
-        "UPDATE equipment SET is_active = 0 WHERE id = %s AND is_active = 1",
+        "UPDATE equipment SET is_active = FALSE WHERE id = %s AND is_active = TRUE",
         (equipment_id,)
     )
     
@@ -448,7 +448,7 @@ def activate_equipment(current_user, current_role, equipment_id):
     cur = conn.cursor()
     
     cur.execute(
-        "UPDATE equipment SET is_active = 1 WHERE id = %s AND is_active = 0",
+        "UPDATE equipment SET is_active = TRUE WHERE id = %s AND is_active = FALSE",
         (equipment_id,)
     )
     
@@ -697,7 +697,7 @@ def get_dashboard_stats(current_user, current_role):
     stats = {}
     
     if current_role == 'admin':
-        cur.execute("SELECT COUNT(*) as count FROM equipment WHERE is_active = 1")
+        cur.execute("SELECT COUNT(*) as count FROM equipment WHERE is_active = TRUE")
         stats['total_equipment'] = cur.fetchone()['count']
         
         cur.execute("SELECT COUNT(*) as count FROM rentals WHERE status = 'rented'")
@@ -740,7 +740,7 @@ def ai_recommend(current_user, current_role):
         
         conn = get_connection()
         cur = conn.cursor()
-        cur.execute("SELECT id, name, price FROM equipment WHERE is_active = 1")
+        cur.execute("SELECT id, name, price FROM equipment WHERE is_active = TRUE")
         equipment = cur.fetchall()
         cur.close()
         conn.close()
@@ -788,7 +788,7 @@ def ai_chat(current_user, current_role):
         
         conn = get_connection()
         cur = conn.cursor()
-        cur.execute("SELECT name, price FROM equipment WHERE is_active = 1")
+        cur.execute("SELECT name, price FROM equipment WHERE is_active = TRUE")
         equipment = cur.fetchall()
         cur.close()
         conn.close()
